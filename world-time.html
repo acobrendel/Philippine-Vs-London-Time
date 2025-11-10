@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>World Time App</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(to right, #2c3e50, #4ca1af);
+      color: white;
+      text-align: center;
+      flex-direction: column;
+    }
+    h1 {
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+    .clock {
+      display: flex;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
+    .time-box {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      min-width: 200px;
+    }
+    .label {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+    .time {
+      font-size: 2rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+  </style>
+</head>
+<body>
+  <h1>World Time</h1>
+  <div class="clock">
+    <div class="time-box">
+      <div class="label">🇵🇭 Philippines</div>
+      <div id="phTime" class="time"></div>
+    </div>
+    <div class="time-box">
+      <div class="label">🇬🇧 London</div>
+      <div id="ukTime" class="time"></div>
+    </div>
+  </div>
+
+  <script>
+    function updateTime() {
+      const phTime = new Date().toLocaleTimeString("en-US", {
+        timeZone: "Asia/Manila",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true
+      });
+
+      const ukTime = new Date().toLocaleTimeString("en-US", {
+        timeZone: "Europe/London",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true
+      });
+
+      document.getElementById("phTime").textContent = phTime;
+      document.getElementById("ukTime").textContent = ukTime;
+    }
+
+    setInterval(updateTime, 1000);
+    updateTime();
+  </script>
+</body>
+</html>
