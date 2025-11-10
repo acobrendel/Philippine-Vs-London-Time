@@ -1,100 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Philippines vs London Time</title>
-  <style>
-    body {
-      font-family: "Poppins", sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      height: 100vh;
-      background: linear-gradient(to right, #1e3c72, #2a5298);
-      color: white;
-      margin: 0;
-      text-align: center;
-    }
-    h1 {
-      font-size: 2.5rem;
-      margin-bottom: 40px;
-      letter-spacing: 2px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Philippines vs London Time</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+    color: white;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    letter-spacing: 2px;
+  }
+
+  .clock {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .time-box {
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+    border-radius: 25px;
+    padding: 30px 50px;
+    min-width: 220px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .time-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+  }
+
+  .label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    gap: 10px;
+  }
+
+  .time {
+    font-family: "Orbitron", monospace;
+    font-size: 2.5rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: #ffffff;
+    text-shadow: 0 0 10px #00e0ff, 0 0 20px #00bfff;
+  }
+
+  .date {
+    font-size: 1rem;
+    margin-top: 8px;
+    color: #f0f0f0;
+  }
+
+  @media (max-width: 600px) {
     .clock {
-      display: flex;
-      gap: 50px;
-      flex-wrap: wrap;
-      justify-content: center;
+      flex-direction: column;
+      gap: 20px;
     }
     .time-box {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 25px 50px;
-      border-radius: 20px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      min-width: 200px;
-      transition: transform 0.2s;
-    }
-    .time-box:hover {
-      transform: scale(1.05);
-    }
-    .label {
-      font-size: 1.3rem;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
+      padding: 25px 35px;
+      min-width: 180px;
     }
     .time {
       font-size: 2rem;
-      font-weight: bold;
-      letter-spacing: 2px;
     }
-    .date {
-      font-size: 1rem;
-      margin-top: 8px;
-      color: #f0f0f0;
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
-  <h1>World Clock</h1>
-  <div class="clock">
-    <div class="time-box">
-      <div class="label"><span>🇵🇭</span> Philippines</div>
-      <div id="phTime" class="time"></div>
-      <div id="phDate" class="date"></div>
-    </div>
-    <div class="time-box">
-      <div class="label"><span>🇬🇧</span> London</div>
-      <div id="ukTime" class="time"></div>
-      <div id="ukDate" class="date"></div>
-    </div>
+<h1>World Clock</h1>
+<div class="clock">
+  <div class="time-box" style="background: linear-gradient(135deg, #ff416c, #ff4b2b);">
+    <div class="label"><span>🇵🇭</span> Philippines</div>
+    <div id="phTime" class="time"></div>
+    <div id="phDate" class="date"></div>
   </div>
 
-  <script>
-    function updateTime() {
-      const phOptions = { timeZone: "Asia/Manila", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true };
-      const ukOptions = { timeZone: "Europe/London", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true };
-      
-      const phDateOptions = { timeZone: "Asia/Manila", weekday: "long", year: "numeric", month: "long", day: "numeric" };
-      const ukDateOptions = { timeZone: "Europe/London", weekday: "long", year: "numeric", month: "long", day: "numeric" };
-      
-      document.getElementById("phTime").textContent = new Date().toLocaleTimeString("en-US", phOptions);
-      document.getElementById("ukTime").textContent = new Date().toLocaleTimeString("en-GB", ukOptions);
+  <div class="time-box" style="background: linear-gradient(135deg, #1f4037, #99f2c8);">
+    <div class="label"><span>🇬🇧</span> London</div>
+    <div id="ukTime" class="time"></div>
+    <div id="ukDate" class="date"></div>
+  </div>
+</div>
 
-      document.getElementById("phDate").textContent = new Date().toLocaleDateString("en-US", phDateOptions);
-      document.getElementById("ukDate").textContent = new Date().toLocaleDateString("en-GB", ukDateOptions);
-    }
+<script>
+function updateTime() {
+  const phOptions = { timeZone: "Asia/Manila", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true };
+  const ukOptions = { timeZone: "Europe/London", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: true };
+  
+  const phDateOptions = { timeZone: "Asia/Manila", weekday: "long", year: "numeric", month: "long", day: "numeric" };
+  const ukDateOptions = { timeZone: "Europe/London", weekday: "long", year: "numeric", month: "long", day: "numeric" };
 
-    setInterval(updateTime, 1000);
-    updateTime();
-  </script>
+  document.getElementById("phTime").textContent = new Date().toLocaleTimeString("en-US", phOptions);
+  document.getElementById("ukTime").textContent = new Date().toLocaleTimeString("en-GB", ukOptions);
+
+  document.getElementById("phDate").textContent = new Date().toLocaleDateString("en-US", phDateOptions);
+  document.getElementById("ukDate").textContent = new Date().toLocaleDateString("en-GB", ukDateOptions);
+}
+
+setInterval(updateTime, 1000);
+updateTime();
+</script>
+
 </body>
 </html>
-
-
-
